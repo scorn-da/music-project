@@ -25,7 +25,7 @@ export class Track {
   audio: string;
 
   @Prop({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Comment' }] })
-  comments: Comment;
+  comments: Comment[];
 }
 
 export const TrackSchema = SchemaFactory.createForClass(Track);
