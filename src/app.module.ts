@@ -1,9 +1,7 @@
 import { Module } from '@nestjs/common';
-import { AppContoller } from './app.controller';
-import { AppService } from './app.service';
+import { TrackModule } from './track/track.module';
 
 @Module({
-  controllers: [AppContoller],
-  providers: [AppService],
+  imports: [TrackModule],
 })
 export class AppModule {}
