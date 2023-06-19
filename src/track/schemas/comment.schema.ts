@@ -1,5 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Track } from './track.schema';
+import * as mongoose from 'mongoose';
 
 export type CommentDocument = Comment & Document;
 
@@ -11,7 +12,7 @@ export class Comment {
   @Prop()
   text: string;
 
-  @Prop()
+  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Track' })
   track: Track;
 }
 
