@@ -1,0 +1,20 @@
+.track {
+  display: flex;
+  align-items: center;
+  margin: 24px;
+  padding: 12px;
+}
+
+.trackInfo {
+  width: 200px;
+  margin: 0 20px;
+
+  i {
+    color: gray;
+    font-size: 12px;
+  }
+}
+
+.deleteBtn {
+  margin-left: auto;
+}
