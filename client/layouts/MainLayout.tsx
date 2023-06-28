@@ -1,6 +1,6 @@
 import React from 'react';
-import Navbar from '../components/Navbar';
 import { Container } from '@mui/material';
+import Navbar from '../components/Navbar';
 
 const MainLayout: React.FC = ({children} ) => {
   return (

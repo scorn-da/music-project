@@ -1,7 +1,7 @@
 import React from 'react';
-import MainLayout from '../../layouts/MainLayout';
+import MainLayout from '../../../layouts/MainLayout';
 
-const Create = () => {
+const Index = () => {
   return (
     <MainLayout>
       <h1>Загрузка трека</h1>
@@ -9,4 +9,4 @@ const Create = () => {
   );
 };
 
-export default Create;
+export default Index;

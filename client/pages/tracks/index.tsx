@@ -3,6 +3,7 @@ import MainLayout from '../../layouts/MainLayout';
 import { Box, Button, Card, Grid } from '@mui/material';
 import { useRouter } from 'next/router';
 import { ITrack } from '../../types/track';
+import TrackList from '../../components/TrackList';
 
 const Index = () => {
   const router = useRouter();
@@ -24,6 +25,7 @@ const Index = () => {
               </Button>
             </Grid>
           </Box>
+          <TrackList tracks={tracks} />
         </Card>
       </Grid>
     </MainLayout>
