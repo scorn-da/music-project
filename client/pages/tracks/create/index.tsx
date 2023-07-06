@@ -2,9 +2,12 @@ import React, { useState } from 'react';
 import MainLayout from '../../../layouts/MainLayout';
 import StepWrapper from '../../../components/StepWrapper';
 import { Button, Grid, TextField } from '@mui/material';
+import FileUpload from '../../../components/FileUpload';
 
 const Index = () => {
   const [activeStep, setActiveStep] = useState(0);
+  const [picture, setPicture] = useState(null);
+  const [audio, setAudio] = useState(null);
 
   const back = () => {
       setActiveStep(prev => prev - 1);
@@ -31,10 +34,22 @@ const Index = () => {
           </Grid>
         }
         {activeStep === 1 &&
-          <h1>STEP 2</h1>
+          <FileUpload
+            file={''}
+            setFile={setPicture}
+            accept='image/*'
+          >
+            <Button>Загрузить обложку</Button>
+          </FileUpload>
         }
         {activeStep === 2 &&
-          <h1>STEP 3</h1>
+        <FileUpload
+          file={''}
+          setFile={setAudio}
+          accept='audio/*'
+        >
+          <Button>Загрузить аудио</Button>
+        </FileUpload>
         }
       </StepWrapper>
       <Grid container justifyContent='space-between'>
