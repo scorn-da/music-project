@@ -1,7 +1,7 @@
 import React from 'react';
 import { IconButton } from '@mui/material';
 import { Pause, PlayArrow } from '@mui/icons-material';
-import styles from 'Player.module.scss';
+import styles from './Player.module.scss';
 
 interface PlayerProps {
 
