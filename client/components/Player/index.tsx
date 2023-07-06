@@ -1,8 +1,9 @@
 import React from 'react';
 import { Grid, IconButton } from '@mui/material';
-import { Pause, PlayArrow } from '@mui/icons-material';
+import { Pause, PlayArrow, VolumeUp } from '@mui/icons-material';
 import styles from './Player.module.scss';
 import { ITrack } from '../../types/track';
+import TrackProgress from '../TrackProgress';
 
 interface PlayerProps {
 
@@ -21,10 +22,13 @@ const Player = () => {
           : <Pause />
         }
       </IconButton>
-      <Grid container direction='column' className={styles.trackInfo}>
+      <Grid container direction='column' style={{width: 200, margin: '0 20px'}}>
         <strong>{track.name}</strong>
         <i>{track.artist}</i>
       </Grid>
+      <TrackProgress current={0} end={100} onChange={() => {}} />
+      <VolumeUp style={{marginLeft: 'auto'}} />
+      <TrackProgress current={0} end={100} onChange={() => {}} />
     </div>
   );
 };
