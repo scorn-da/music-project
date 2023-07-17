@@ -23,6 +23,12 @@ const Player = () => {
       audio = new Audio;
       audio.src = track.audio;
       audio.volume = volume / 100;
+      audio.onloadedmetadata = () => {
+        setDuration(Math.ceil(audio.duration));
+      }
+      audio.ontimeupdate = () => {
+        setCurrentTime(Math.ceil(audio.currentTime));
+      }
     }
   }, [])
 
@@ -42,6 +48,10 @@ const Player = () => {
     setVolume(currentVolume);
   })
 
+  const changeCurrentTime = ((e: React.ChangeEvent<HTMLInputElement>) => {
+    audio.currentTime =  Number(e.target.value);
+  })
+
   return (
     <div className={styles.player}>
       <IconButton onClick={play}>
@@ -55,7 +65,7 @@ const Player = () => {
         <strong>{track.name}</strong>
         <i>{track.artist}</i>
       </Grid>
-      <TrackProgress current={0} end={100} onChange={() => {}} />
+      <TrackProgress current={currentTime} end={duration} onChange={changeCurrentTime} />
       <VolumeUp style={{marginLeft: 'auto'}} />
       <TrackProgress current={volume} end={100} onChange={changeVolume} />
     </div>
