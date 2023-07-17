@@ -8,7 +8,6 @@ import { useTypedSelector } from '../../hooks/useTypedSelector';
 import { useActions } from '../../hooks/useActions';
 
 interface PlayerProps {
-
 }
 
 let audio;
@@ -21,6 +20,13 @@ const Player = () => {
   useEffect(() => {
     if (!audio) {
       audio = new Audio;
+    } else {
+      setAudio();
+    }
+  }, [])
+
+  const setAudio = () => {
+    if (active) {
       audio.src = track.audio;
       audio.volume = volume / 100;
       audio.onloadedmetadata = () => {
@@ -30,7 +36,7 @@ const Player = () => {
         setCurrentTime(Math.ceil(audio.currentTime));
       }
     }
-  }, [])
+  }
 
   const play = () => {
     if (pause) {
