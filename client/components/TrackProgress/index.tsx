@@ -11,7 +11,7 @@ const TrackProgress: React.FC<TrackProgressProps> = ({ current, end, onChange}) 
     <div style={{display: 'flex'}}>
       <input
         type='range'
-        min={current}
+        min={0}
         max={end}
         value={current}
         onChange={onChange}
