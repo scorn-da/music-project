@@ -25,7 +25,7 @@ const Player = () => {
 
   const setAudio = () => {
     if (active) {
-      audio.src = active.audio;
+      audio.src = 'http://localhost:5000/' + active.audio;
       audio.volume = volume / 100;
       audio.onloadedmetadata = () => {
         setDuration(Math.ceil(audio.duration));
@@ -69,7 +69,7 @@ const Player = () => {
           : <Pause />
         }
       </IconButton>
-      <img src={active?.picture} alt={`${active?.artist} — ${active?.name}`} style={{width: 40, height: 40}} />
+      <img src={`http://localhost:5000/${active?.picture}`} alt={`${active?.artist} — ${active?.name}`} style={{width: 40, height: 40}} />
       <Grid container direction='column' style={{width: 200, margin: '0 20px'}}>
         <strong>{active?.name}</strong>
         <i>{active?.artist}</i>
