@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ITrack } from '../../../types/track';
 import MainLayout from '../../../layouts/MainLayout';
 import { Button, Grid, TextField } from '@mui/material';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
+import { GetServerSideProps } from 'next';
+import axios from 'axios';
 
-const Index = () => {
-  const track: ITrack = {_id: '1', name: 'Трек 1', artist: 'Исполнитель 1', listened: 0, picture: '', audio: '', text: '', comments: []};
+const Index = ({ serverTrack }) => {
   const router = useRouter();
+  const [track, setTrack] = useState(serverTrack);
 
   return (
     <MainLayout>
@@ -19,11 +21,11 @@ const Index = () => {
         К списку
       </Button>
       <Grid container style={{margin: '20px 0'}}>
-        <Image src={track.picture} alt={track.name} width={200} height={200} />
+        <img src={`http://localhost:5000/${track.picture}`} alt={track.name} width={200} height={200} />
         <div style={{margin: 30}}>
-          <h1>Название {track.name}</h1>
-          <h2>Исполнитель {track.artist}</h2>
-          <span>Кол-во прослушиваний {track.listened}</span>
+          <h1>Название: {track.name}</h1>
+          <h2>Исполнитель: {track.artist}</h2>
+          <span>Кол-во прослушиваний: {track.listened}</span>
         </div>
       </Grid>
       <h2>Текст песни</h2>
@@ -57,3 +59,13 @@ const Index = () => {
 };
 
 export default Index;
+
+export const getServerSideProps: GetServerSideProps = async ({ params }) => {
+  const res = await axios.get('http://localhost:5000/tracks/' + params.id);
+
+  return {
+    props: {
+      serverTrack: res.data,
+    }
+  };
+}
