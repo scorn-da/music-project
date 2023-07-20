@@ -1,5 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Comment } from './comment.schema';
+import { Document } from 'mongoose';
 import * as mongoose from 'mongoose';
 
 export type TrackDocument = Track & Document;

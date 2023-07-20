@@ -42,13 +42,13 @@ export class TrackService {
 
   async delete(id: ObjectId): Promise<ObjectId> {
     const track = await this.trackModel.findByIdAndDelete(id);
-    return track.id;
+    return track._id;
   }
 
   async addComment(dto: CreateCommentDto): Promise<Comment> {
     const track = await this.trackModel.findById(dto.trackId);
     const comment = await this.commentModel.create({ ...dto });
-    track.comments.push(comment.id);
+    track.comments.push(comment._id);
     await track.save();
     return comment;
   }
