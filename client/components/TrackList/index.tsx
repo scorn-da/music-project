@@ -8,6 +8,7 @@ interface TrackListProps {
 }
 
 const TrackList: React.FC<TrackListProps> = ({ tracks }) => {
+  console.log(tracks);
   return (
     <Grid container direction='column'>
       <Box p={2}>

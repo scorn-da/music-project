@@ -3,13 +3,28 @@ import { ITrack } from '../../../types/track';
 import MainLayout from '../../../layouts/MainLayout';
 import { Button, Grid, TextField } from '@mui/material';
 import { useRouter } from 'next/router';
-import Image from 'next/image';
 import { GetServerSideProps } from 'next';
 import axios from 'axios';
+import { useInput } from '../../../hooks/useInput';
 
 const Index = ({ serverTrack }) => {
   const router = useRouter();
-  const [track, setTrack] = useState(serverTrack);
+  const [track, setTrack] = useState<ITrack>(serverTrack);
+  const username = useInput('');
+  const commentText = useInput('');
+
+  const addComment = async () => {
+    try {
+      const res = await axios.post('http://localhost:5000/tracks/comment', {
+        username: username.value,
+        text: commentText.value,
+        trackId: track._id
+      });
+      setTrack({...track, comments: [...track.comments, res.data]})
+    } catch (e) {
+      console.log(e);
+    }
+  }
 
   return (
     <MainLayout>
@@ -35,14 +50,16 @@ const Index = ({ serverTrack }) => {
         <TextField
           label='Ваше имя'
           fullWidth
+          {...username}
         />
         <TextField
           label='Комментарий'
           fullWidth
           multiline
+          {...commentText}
           rows={4}
         />
-        <Button>
+        <Button onClick={addComment}>
           Отправить
         </Button>
       </Grid>
