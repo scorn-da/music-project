@@ -22,7 +22,7 @@ const Index = ({ serverTrack }) => {
       });
       setTrack({...track, comments: [...track.comments, res.data]})
     } catch (e) {
-      console.log(e);
+      throw new Error(e.message);
     }
   }
 
@@ -63,14 +63,17 @@ const Index = ({ serverTrack }) => {
           Отправить
         </Button>
       </Grid>
-      <div>
-        {track.comments.map((comment) => {
-          return (<p key={comment._id}>
-            <strong>Автор: {comment.username}</strong>
-            <i>{comment.text}</i>
-          </p>);
-        })}
-      </div>
+      {
+        track.comments &&
+          <ul>
+            {track.comments?.map((comment) => {
+              return (<li key={comment._id} style={{display: 'flex', flexFlow: 'column'}}>
+                <strong>Автор: {comment.username}</strong>
+                <i>{comment.text}</i>
+              </li>);
+            })}
+          </ul>
+      }
     </MainLayout>
   );
 };
